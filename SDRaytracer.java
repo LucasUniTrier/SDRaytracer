@@ -43,22 +43,19 @@ public class SDRaytracer extends JFrame
 
    List<Triangle> triangles;
 
-   Vec3D mainLight  = new Vec3D(0,100,0, new RGB(0.1f,0.1f,0.1f));
+   Vec3D mainLight  = Config.mainLight;
 
-   Vec3D lights[]= new Vec3D[]{ mainLight
-                                ,new Vec3D(100,200,300, new RGB(0.5f,0,0.0f))
-                                ,new Vec3D(-100,200,300, new RGB(0.0f,0,0.5f))
-                                //,new Vec3D(-100,0,0, new RGB(0.0f,0.8f,0.0f))
-                              };
+   Vec3D lights[]= Config.lights;
 
    RGB [][] image= new RGB[width][height];
    
-   float fovx=(float) 0.628;
-   float fovy=(float) 0.628;
-   RGB ambient_color=new RGB(0.01f,0.01f,0.01f);
-   RGB background_color=new RGB(0.05f,0.05f,0.05f);
-   RGB black=new RGB(0.0f,0.0f,0.0f);
-   int y_angle_factor=4, x_angle_factor=-4;
+   float fovx=Config.fovx;
+   float fovy=Config.fovy;
+   RGB ambient_color=Config.ambient_color;
+   RGB background_color=Config.background_color;
+   RGB black=Config.black;
+   int y_angle_factor=Config.y_angle_factor;
+   int x_angle_factor=Config.x_angle_factor;
    
 public static void  main(String argv[])
   { 
@@ -73,7 +70,7 @@ public static void  main(String argv[])
 void profileRenderImage(){
   long end, start, time;
 
-  renderImage(); // initialisiere Datenstrukturen, erster Lauf verf�lscht sonst Messungen
+  renderImage(); // initialisiere Datenstrukturen, erster Lauf verfälscht sonst Messungen
   
   for(int procs=1; procs<6; procs++) {
 
